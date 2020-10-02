@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% load static %} 
+
+{% block empresa %}
+    <section id="empresa">
+        <form id="form" method="POST" action="#empresa">{% csrf_token%}
+            <h1>Escolha de empresa</h1>
+           
+            <nav class="company">
+                {% for empresa in empresas%}
+                <nav>
+                    <a href="{% url 'core:empresa' empresa.pk %}">{{empresa.name}}</a>
+                    <img id="logo" src="https://res.cloudinary.com/wagner/image/upload/{{empresa.logo}}" alt="">
+                </nav>
+                {%endfor%}
+            </nav>
+            <nav >
+        </form>
+    </section>
+    
+    {% endblock %}

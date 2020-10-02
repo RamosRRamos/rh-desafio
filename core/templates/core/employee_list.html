@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <form class="needs-validation" novalidate method="POST"> {% csrf_token %}
+        <h4 class="col-md-6 offset-md-3">Lista de Colaboradores</h1>
+        <div class="form-group">  
+                {% for list in object_list %}
+                <div class="col-md-6 offset-md-3" id="listar">
+                    <p class="form-control"><span>Nome: {{ list.name }}</span></p>
+                    <p class="form-control"><span>Email: {{ list.email }}</span></p>
+                    <p class="form-control"><span>Idade: {{ list.age }}</span></p>
+                    <p class="form-control"><span>Telefone: {{ list.phone }}</span></p>
+                    <p class="form-control"><span>Usuario: {{ list.user }}</span></p>
+                    <p class="form-control"><span>Genero: {{ list.gender }}</span></p>
+                    <p class="form-control"><span>Efetivado: {{ list.joining_date }}</span></p>
+                    <p class="form-control"><span>Salario: {{ list.salary }}</span></p>
+                    <p class="form-control"><span>Empresa: {{ list.company }}</span></p>
+                    <p class="form-control"><span>Departamento: {{ list.department }}</span></p>
+                    <a class="btn btn-warning btn-sm"href="{% url 'core:employee_edit' list.pk %}">edit</a>
+                    <a class="btn btn-danger btn-sm"href="{% url 'core:employee_delete' list.pk %}">delete</a>
+                </div>
+            {% endfor %}
+    </form>
+</div>
+{% endblock %}

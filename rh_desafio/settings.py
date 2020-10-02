@@ -1,4 +1,7 @@
 from pathlib import Path
+import os
+import django_heroku
+import psycopg2
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -17,8 +20,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'core',
+    'cloudinary',
+
 
 ]
 
@@ -90,5 +94,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+django_heroku.settings(locals())
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CLOUDINARY = {
+    'cloud_name' : os.environ.get('cloud_name'),
+    'api_key' : os.environ.get('api_key'),
+    'api_secret': os.environ.get('api_secret'),
+}

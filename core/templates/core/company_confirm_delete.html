@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="container">
+    <form novalidate method="POST"enctype="multipart/form-data">{% csrf_token%}
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3" id="listar">    Tem certeza que deseja remover "{{ object }}" ?<br>
+                <button class="btn btn-danger btn-sm" value="Delete">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
